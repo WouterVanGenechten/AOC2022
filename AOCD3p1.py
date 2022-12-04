@@ -29,7 +29,7 @@ for line in Lines:
     commontypes.append(uniquetype)
 
 print(commontypes)
-"""
+
 #calculate the priority score
 #going to try this through the index, less hardcoding of numbers
 priority_scores = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -52,4 +52,3 @@ for type in commontypes:
         priorityscores += score +1
 print(priorityscores)
     
-"""
