@@ -46,7 +46,7 @@ for command in commands:
     #now use this info to manipulate the array
     #iterate this command depending on the num_boxes
     while num_boxes > 0:
-        print("still running the command")
+        #print("still running the command")
         num_boxes -= 1
         #whilst iterating find the top box for the startloc
         #how to find the top of the box?
@@ -65,17 +65,22 @@ for command in commands:
         #find where it can be put in the array, it is the last location with an empty space
         #find the first location with empty space [x,y]
         #the space above it is [x-1, y] with y beind endloc and x-1 the previous boxline
-        box_line = -1
-        for box in boxes: #this loops 3 times because we have 3 box lines
+        box_line = 0
+        for box in boxes: #this loops n times because we have n box lines
             #print(boxes)
-            if box[endloc - 1] != " ":
-                #print(box_line)
+            if box[endloc - 1] == " ":
                 box_line += 1
-                print("we can calculate the location of the storage")
+            if box[endloc - 1] != " ":
+                print(box[endloc - 1])
                 #print(box_line)
-                boxes[box_line, endloc-1] = selected_box
+
+                print("we can calculate the location of the storage")
+                print(box_line)
+                print(endloc)
+                #print(box_line)
+                boxes[box_line - 1, endloc-1] = selected_box
                 
-                
+#array access by y, x here we named that box_line, end/startLoc                
                 
                 break
             
@@ -83,4 +88,4 @@ for command in commands:
         print(boxes)
     print("all boxes in this command are moved")
 
-    print(boxes)
+    #print(boxes)
