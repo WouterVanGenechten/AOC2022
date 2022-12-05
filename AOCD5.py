@@ -7,42 +7,41 @@ Created on Mon Dec  5 09:48:15 2022
 """
 #create an empty array
 import numpy as np
-boxes = np.empty([3, 3], str)
-emptyboxesontop = np.empty([3, 3], str)
-#print(boxes)
-#print(emptyboxesontop)
+boxes = np.empty([8, 9], str)
+emptyboxesontop = np.empty([30, 9], str)
 boxes[boxes == ""] = " "
 emptyboxesontop[emptyboxesontop == ""] = " "
 
-file1 = open('AOCD5b.txt', 'r')
+file1 = open('AOCD5a.txt', 'r')
 boxes_commands = file1.read().splitlines()
 
 #append boxes to array
-
-for i in range(3):
-
+for i in range(8):
     boxes[i, 0] = boxes_commands[i][1]     
     boxes[i, 1] = boxes_commands[i][5]
     boxes[i, 2] = boxes_commands[i][9]
+    boxes[i, 3] = boxes_commands[i][13]
+    boxes[i, 4] = boxes_commands[i][17]
+    boxes[i, 5] = boxes_commands[i][21]
+    boxes[i, 6] = boxes_commands[i][25]
+    boxes[i, 7] = boxes_commands[i][29]
+    boxes[i, 8] = boxes_commands[i][33]    
 boxes = np.concatenate((emptyboxesontop, boxes), axis=0)
-
-
 
 
 #take the commands and iterate over the commands, parsing the info
 commands = []
 i = 5
-commands = boxes_commands[5:]
+commands = boxes_commands[10:]
+
+#unfold the commands into the three values necessary
 for command in commands:
-    
+    print(boxes)
     print(command)
     listcommand = command.split(" ")
     num_boxes = int(listcommand[1])
-    #print(num_boxes)
     startloc = int(listcommand[3])
-    #print(startloc)
     endloc = int(listcommand[-1])
-    #print(endloc)
 
     #now use this info to manipulate the array
     #iterate this command depending on the num_boxes
@@ -52,15 +51,16 @@ for command in commands:
         #whilst iterating find the top box for the startloc
         #how to find the top of the box?
         for box in boxes:
-            print(box)
+            #print(box)
             if box[startloc - 1] != " ":
-                print("found the top box, we stop looking")
+                #print("found the top box, we stop looking")
                 selected_box = box[startloc - 1]
                 #delete the box in that location
                 box[startloc - 1] = " "
                 #add that box to the top of the endloc
-                break
-        
+                #print(boxes)
+                break     
+            
         #implement that value in another location
         #on this level we are still within a command, we have the selected_box
         #find where it can be put in the array, it is the last location with an empty space
@@ -72,26 +72,16 @@ for command in commands:
             
             if box[endloc - 1] == " ":
                 box_line += 1
-                if box_line == 6:
-                    print("the new location is empty")
-                    boxes[5, endloc-1] = selected_box
+                if box_line == 38:
+                    #means this location is empty
+                    boxes[37, endloc-1] = selected_box
             if box[endloc - 1] != " ":
-                print(box[endloc - 1])
-                #print(box_line)   
-
-                print("we can calculate the location of the storage")
-                print(box_line)
-                print(endloc)
-                #print(box_line)
                 boxes[box_line - 1, endloc-1] = selected_box
+                break
                 
 #array access by y, x here we named that box_line, end/startLoc                
-               
-                break
           
-        print("command done")
-        print(boxes)
-    print("all boxes in this command are moved")
-#now I need to find the top boxes for each column.
-
-    #print(boxes)
+        #print("command done")
+    print(boxes)
+    #print("all boxes in this command are moved")
+print(boxes)
