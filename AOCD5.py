@@ -34,6 +34,7 @@ commands = []
 i = 5
 commands = boxes_commands[5:]
 for command in commands:
+    
     print(command)
     listcommand = command.split(" ")
     num_boxes = int(listcommand[1])
@@ -68,11 +69,15 @@ for command in commands:
         box_line = 0
         for box in boxes: #this loops n times because we have n box lines
             #print(boxes)
+            
             if box[endloc - 1] == " ":
                 box_line += 1
+                if box_line == 6:
+                    print("the new location is empty")
+                    boxes[5, endloc-1] = selected_box
             if box[endloc - 1] != " ":
                 print(box[endloc - 1])
-                #print(box_line)
+                #print(box_line)   
 
                 print("we can calculate the location of the storage")
                 print(box_line)
@@ -81,11 +86,12 @@ for command in commands:
                 boxes[box_line - 1, endloc-1] = selected_box
                 
 #array access by y, x here we named that box_line, end/startLoc                
-                
+               
                 break
-            
+          
         print("command done")
         print(boxes)
     print("all boxes in this command are moved")
+#now I need to find the top boxes for each column.
 
     #print(boxes)
