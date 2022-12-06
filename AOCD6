@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec  6 12:41:04 2022
+
+@author: u0107886
+"""
+
+file1 = open('AOCD6.txt', 'r')
+datastreamstr = file1.read()
+length = len(datastreamstr)
+datastream = list(map(str,datastreamstr))
+
+#print(datastream)
+
+count = -1
+countdata = 0
+
+for data in datastream:
+    #print(data)
+    #print(datastream[countdata+1])
+    count += 1
+    if count == length-4:
+        #print(data)
+        print("I reached the end")
+        break
+
+    
+    if datastream[countdata] != datastream[countdata + 1] and datastream[countdata] != datastream[count+2] and datastream[countdata] != datastream[count+3]:
+        if datastream[countdata + 1] != datastream[count+2] and datastream[countdata + 1] != datastream[count+3]:
+            if datastream[count+2] != datastream[count+3]:
+                print("we have a unique sequence")
+                print(countdata + 4)
+                break
+    countdata+= 1
+    #else:
+        #print("we have a unique sequence ending at")
+        #print(count+4)
+   
+#part 2, gonna use length set and compare it to the 14 length stream
+countsomething = -1
+count = 0
+for data in datastream:
+    if count == length-4:
+        #print(data)
+        print("I reached the end")
+        break
+    placeholderdata = []
+    x = 0
+    while x < 14:
+        print("gonna add a datapoint!")
+        placeholderdata.append(datastream[countsomething + x])
+        x += 1
+    countsomething += 1
+    if len(set(placeholderdata)) == len(placeholderdata):
+        print("found unique set")
+        print(countsomething+x-1)
+        break
+    #print(placeholderdata)
+    
+    
+    
+    
+"""
+    #print(data)
+    #print(datastream[countdata+1])
+    count += 1
+    if count == length-4:
+        #print(data)
+        print("I reached the end")
+        break
+
+    
+    if datastream[countdata] != datastream[countdata + 1] and datastream[countdata] != datastream[count+2] and datastream[countdata] != datastream[count+3]:
+        if datastream[countdata + 1] != datastream[count+2] and datastream[countdata + 1] != datastream[count+3]:
+            if datastream[count+2] != datastream[count+3]:
+                
+                                                                                                
+            
+                print("we have a unique sequence")
+                print(countdata + 4)
+                break
+    countdata+= 1
+    #else:
+        #print("we have a unique sequence ending at")
+        #print(count+4)
+"""
