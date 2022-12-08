@@ -1,0 +1,8 @@
+#splits into seperate lines
+#define this as def readlines
+file1 = open('AOCD#.txt', 'r')
+filename = file1.read().splitlines()
+
+#define this function as read lines and split objects per empty line
+
+#read into one long single line
